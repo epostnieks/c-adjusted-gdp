@@ -283,7 +283,7 @@ function compute(c, mu, code) {
   for (const ch of channels) {
     if (ch.pct <= 0) continue;
     const sg = g * ch.pct / 100;
-    const l = mu * ch.beta * sg * 0.01;
+    const l = mu * ch.beta * sg * 0.15;
     loss += l;
     if (l > 0.05) bd.push({ ...ch, gdp: sg, loss: l });
   }
