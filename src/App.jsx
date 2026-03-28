@@ -174,7 +174,7 @@ const BLOCS = {
   "Middle East Petrostates": ["SA","AE","KW","QA","IQ","IR","OM","BH","LY","DZ","AZ"],
 };
 
-// SAPM-calibrated β_W values — © 2026 Erik Postnieks (2025-2026)
+// SAPM-calibrated βW values — © 2026 Erik Postnieks (2025-2026)
 // Each beta sourced from the corresponding SAPM working paper
 const SAPM_BETAS = {
   // Impossibility domains (physical floors)
@@ -403,7 +403,7 @@ export default function App() {
 
     {tab==="ranking"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
       <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-        {["#","Country","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Country"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
+        {["#","Country","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Country"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h === "βW" ? <span>β<sub>W</sub></span> : h}</th>)}
       </tr></thead>
       <tbody>{all.map((d,i)=><tr key={d.code} style={{borderBottom:"1px solid rgba(255,255,255,0.03)",background:d.code==="US"?"rgba(245,158,11,0.04)":"transparent"}}>
         <td style={{padding:"5px 10px",textAlign:"right",color:"rgba(255,255,255,0.3)"}}>{i+1}</td>
@@ -441,7 +441,7 @@ export default function App() {
 
     {tab==="blocs"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
       <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-        {["#","Bloc","Members","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Bloc"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
+        {["#","Bloc","Members","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Bloc"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h === "βW" ? <span>β<sub>W</sub></span> : h}</th>)}
       </tr></thead>
       <tbody>{blocData.map((d,i)=><tr key={d.name} style={{borderBottom:"1px solid rgba(255,255,255,0.03)",background:d.name==="United States"?"rgba(245,158,11,0.04)":"transparent"}}>
         <td style={{padding:"5px 10px",textAlign:"right",color:"rgba(255,255,255,0.3)"}}>{i+1}</td>
@@ -465,7 +465,7 @@ export default function App() {
       </div>
       <table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
         <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-          {["PST Channel","% GDP","Sector GDP","β_W","Loss"].map(h=><th key={h} style={{textAlign:h==="PST Channel"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
+          {["PST Channel","% GDP","Sector GDP","βW","Loss"].map(h=><th key={h} style={{textAlign:h==="PST Channel"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h === "βW" ? <span>β<sub>W</sub></span> : h}</th>)}
         </tr></thead>
         <tbody>{selR.bd.map(ch=><tr key={ch.name} style={{borderBottom:"1px solid rgba(255,255,255,0.03)"}}>
           <td style={{padding:"5px 10px",color:"#F5F0E8"}}>{ch.name}</td>
@@ -481,9 +481,9 @@ export default function App() {
       <h2 style={{fontSize: 20,fontWeight:400,color:"#F5F0E8",marginBottom:16}}>Methodology</h2>
       <p><strong style={{color:"#F5F0E8"}}>Data:</strong> World Bank WDI. GDP, sector value-added, resource rents, military and health expenditure as % of GDP. {Object.keys(RAW).length} countries.</p>
       <p><strong style={{color:"#F5F0E8"}}>PST mapping:</strong> World Bank sectors mapped to PST domains via resource rent indicators, military expenditure, and health expenditure. Decomposition ratios are preliminary — each SAPM paper refines the mapping.</p>
-      <p><strong style={{color:"#F5F0E8"}}>β_W:</strong> Calibrated from SAPM papers where available. Placeholder estimates for domains in progress. Updates automatically as papers publish.</p>
-      <p><strong style={{color:"#F5F0E8"}}>C-adjustment:</strong> loss = μ × β_W × sector_GDP × 0.01. Shadow price μ adjustable via slider.</p>
-      <p><strong style={{color:"#F5F0E8"}}>Limitations:</strong> Sector decomposition ratios are estimated, not calibrated. β_W values for uncalibrated domains are placeholders. Fork the repo and contest any parameter.</p>
+      <p><strong style={{color:"#F5F0E8"}}>β<sub>W</sub>:</strong> Calibrated from SAPM papers where available. Placeholder estimates for domains in progress. Updates automatically as papers publish.</p>
+      <p><strong style={{color:"#F5F0E8"}}>C-adjustment:</strong> loss = μ × βW × sector_GDP × 0.01. Shadow price μ adjustable via slider.</p>
+      <p><strong style={{color:"#F5F0E8"}}>Limitations:</strong> Sector decomposition ratios are estimated, not calibrated. βW values for uncalibrated domains are placeholders. Fork the repo and contest any parameter.</p>
       <div style={{marginTop:32,padding:20,background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:4}}>
         <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"#F59E0B",textTransform:"uppercase",marginBottom:8}}>Citation</div>
         <p style={{fontFamily:M,fontSize: 14,color:"rgba(255,255,255,0.5)",margin:0}}>Postnieks, E. (2026). "What Is the World Actually Earning? C-Adjusted GDP Across 190 Countries." Working Paper. github.com/epostnieks/c-adjusted-gdp</p>
@@ -494,7 +494,7 @@ export default function App() {
       <div style={{fontFamily:M,fontSize: 12,color:"rgba(255,255,255,0.15)",lineHeight:1.8}}>
         <div>C-Adjusted GDP Explorer · Erik Postnieks · github.com/epostnieks/c-adjusted-gdp</div>
         <div>Private Pareto Theorem (Postnieks, 2026a) · SAPM · World Bank WDI</div>
-        <div>Every parameter contestable. Fork the repo. Change a β_W. The instrument is the argument.</div>
+        <div>Every parameter contestable. Fork the repo. Change a βW. The instrument is the argument.</div>
       </div>
     </footer>
   <SAPMNav />
