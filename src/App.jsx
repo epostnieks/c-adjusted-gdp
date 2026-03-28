@@ -174,7 +174,7 @@ const BLOCS = {
   "Middle East Petrostates": ["SA","AE","KW","QA","IQ","IR","OM","BH","LY","DZ","AZ"],
 };
 
-// SAPM-calibrated β_W values — Postnieks Impossibility Program (2025-2026)
+// SAPM-calibrated β_W values — © 2026 Erik Postnieks (2025-2026)
 // Each beta sourced from the corresponding SAPM working paper
 const SAPM_BETAS = {
   // Impossibility domains (physical floors)
