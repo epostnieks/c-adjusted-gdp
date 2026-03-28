@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import SAPMNav from "./SAPMNav";
 
 const RAW = {
   AE:{n:"United Arab Emirates",g:552.3,ag:0.8,ind:44.3,mfg:9.4,svc:54.9,oil:15.67,gas:1.96,coal:0,min:0,fr:0.0,mil:0,hlt:4.97},
@@ -496,5 +497,6 @@ export default function App() {
         <div>Every parameter contestable. Fork the repo. Change a β_W. The instrument is the argument.</div>
       </div>
     </footer>
-  </div>;
+  <SAPMNav />
+      </div>;
 }
