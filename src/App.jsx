@@ -298,9 +298,9 @@ const S = "'Newsreader',serif";
 
 function Stat({l,v,s,color="#F59E0B"}) {
   return <div style={{flex:1,minWidth:170,padding:"14px 18px",background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:4}}>
-    <div style={{fontFamily:M,fontSize:10,letterSpacing:"0.1em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase",marginBottom:6}}>{l}</div>
-    <div style={{fontFamily:M,fontSize:21,fontWeight:600,color,letterSpacing:"-0.02em"}}>{v}</div>
-    {s&&<div style={{fontFamily:M,fontSize:11,color:"rgba(255,255,255,0.3)",marginTop:3}}>{s}</div>}
+    <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase",marginBottom:6}}>{l}</div>
+    <div style={{fontFamily:M,fontSize: 21,fontWeight:600,color,letterSpacing:"-0.02em"}}>{v}</div>
+    {s&&<div style={{fontFamily:M,fontSize: 13,color:"rgba(255,255,255,0.3)",marginTop:3}}>{s}</div>}
   </div>;
 }
 
@@ -348,21 +348,21 @@ export default function App() {
     <style>{`@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap');`}</style>
 
     <header style={{padding:"40px 0 24px",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-      <div style={{fontFamily:M,fontSize:10,letterSpacing:"0.12em",color:"#F59E0B",marginBottom:12,textTransform:"uppercase"}}>C-Adjusted GDP Explorer · {Object.keys(RAW).length} Countries · World Bank Data</div>
-      <h1 style={{fontSize:28,fontWeight:400,margin:0,lineHeight:1.25,letterSpacing:"-0.02em"}}>What Is the World Actually Earning?</h1>
-      <p style={{fontSize:15,color:"rgba(255,255,255,0.4)",margin:"8px 0 0",fontStyle:"italic"}}>C-Adjusted GDP Using the System Asset Pricing Model</p>
-      <div style={{fontFamily:M,fontSize:11,color:"rgba(255,255,255,0.25)",marginTop:12}}>Erik Postnieks · Postnieks (2026a) · github.com/epostnieks/c-adjusted-gdp</div>
+      <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.12em",color:"#F59E0B",marginBottom:12,textTransform:"uppercase"}}>C-Adjusted GDP Explorer · {Object.keys(RAW).length} Countries · World Bank Data</div>
+      <h1 style={{fontSize: 28,fontWeight:400,margin:0,lineHeight:1.25,letterSpacing:"-0.02em"}}>What Is the World Actually Earning?</h1>
+      <p style={{fontSize: 17,color:"rgba(255,255,255,0.4)",margin:"8px 0 0",fontStyle:"italic"}}>C-Adjusted GDP Using the System Asset Pricing Model</p>
+      <div style={{fontFamily:M,fontSize: 13,color:"rgba(255,255,255,0.25)",marginTop:12}}>Erik Postnieks · Postnieks (2026a) · github.com/epostnieks/c-adjusted-gdp</div>
     </header>
 
-    {leader[0].n!=="US"&&<div style={{margin:"16px 0 0",padding:"10px 18px",background:"rgba(34,197,94,0.08)",border:"1px solid rgba(34,197,94,0.25)",borderRadius:4,fontFamily:M,fontSize:13,fontWeight:600,color:"#22C55E",letterSpacing:"0.02em"}}>
+    {leader[0].n!=="US"&&<div style={{margin:"16px 0 0",padding:"10px 18px",background:"rgba(34,197,94,0.08)",border:"1px solid rgba(34,197,94,0.25)",borderRadius:4,fontFamily:M,fontSize: 15,fontWeight:600,color:"#22C55E",letterSpacing:"0.02em"}}>
       {leader[0].n} EXCEEDS {leader[1].n} ON C-ADJUSTED GDP — {fmt(leader[0].v)} vs {fmt(leader[1].v)}
     </div>}
 
     <div style={{margin:"16px 0 24px"}}>
-      <div style={{fontFamily:M,fontSize:10,letterSpacing:"0.1em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase",marginBottom:8}}>Bloc Comparison</div>
+      <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"rgba(255,255,255,0.35)",textTransform:"uppercase",marginBottom:8}}>Bloc Comparison</div>
       <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
         <div style={{flex:1,minWidth:200}}>
-          <select value={blocLeft} onChange={e=>setBlocLeft(e.target.value)} style={{fontFamily:M,fontSize:11,padding:"6px 10px",background:"#1A1A1A",color:"#F5F0E8",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,marginBottom:8,width:"100%",cursor:"pointer"}}>
+          <select value={blocLeft} onChange={e=>setBlocLeft(e.target.value)} style={{fontFamily:M,fontSize: 13,padding:"6px 10px",background:"#1A1A1A",color:"#F5F0E8",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,marginBottom:8,width:"100%",cursor:"pointer"}}>
             {Object.keys(BLOCS).map(b=><option key={b} value={b}>{b}</option>)}
           </select>
           <div style={{display:"flex",gap:8}}>
@@ -371,7 +371,7 @@ export default function App() {
           </div>
         </div>
         <div style={{flex:1,minWidth:200}}>
-          <select value={blocRight} onChange={e=>setBlocRight(e.target.value)} style={{fontFamily:M,fontSize:11,padding:"6px 10px",background:"#1A1A1A",color:"#F5F0E8",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,marginBottom:8,width:"100%",cursor:"pointer"}}>
+          <select value={blocRight} onChange={e=>setBlocRight(e.target.value)} style={{fontFamily:M,fontSize: 13,padding:"6px 10px",background:"#1A1A1A",color:"#F5F0E8",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,marginBottom:8,width:"100%",cursor:"pointer"}}>
             {Object.keys(BLOCS).map(b=><option key={b} value={b}>{b}</option>)}
           </select>
           <div style={{display:"flex",gap:8}}>
@@ -384,26 +384,26 @@ export default function App() {
 
     <div style={{margin:"24px 0",padding:"14px 18px",background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:4}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
-        <span style={{fontFamily:M,fontSize:10,letterSpacing:"0.1em",color:"rgba(255,255,255,0.4)",textTransform:"uppercase"}}>Shadow Price (μ)</span>
-        <span style={{fontFamily:M,fontSize:18,fontWeight:600,color:"#F59E0B"}}>{mu.toFixed(2)}</span>
+        <span style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"rgba(255,255,255,0.4)",textTransform:"uppercase"}}>Shadow Price (μ)</span>
+        <span style={{fontFamily:M,fontSize: 18,fontWeight:600,color:"#F59E0B"}}>{mu.toFixed(2)}</span>
       </div>
       <input type="range" min={0} max={2} step={0.01} value={mu} onChange={e=>setMu(parseFloat(e.target.value))} style={{width:"100%",accentColor:"#F59E0B"}}/>
-      <div style={{display:"flex",justifyContent:"space-between",fontFamily:M,fontSize:10,color:"rgba(255,255,255,0.2)",marginTop:4}}>
+      <div style={{display:"flex",justifyContent:"space-between",fontFamily:M,fontSize: 12,color:"rgba(255,255,255,0.2)",marginTop:4}}>
         <span>μ=0</span><span>μ=1.0 (full social cost)</span><span>μ=2.0</span>
       </div>
     </div>
 
     <nav style={{display:"flex",gap:0,borderBottom:"1px solid rgba(255,255,255,0.06)",marginBottom:24,position:"sticky",top:0,background:"#0D0D0D",zIndex:10,paddingTop:8}}>
-      {tabs.map(t=><button key={t.id} onClick={()=>setTab(t.id)} style={{fontFamily:M,fontSize:11,letterSpacing:"0.04em",color:tab===t.id?"#F59E0B":"rgba(255,255,255,0.35)",background:"none",border:"none",cursor:"pointer",padding:"12px 16px",borderBottom:tab===t.id?"2px solid #F59E0B":"2px solid transparent"}}>{t.l}</button>)}
+      {tabs.map(t=><button key={t.id} onClick={()=>setTab(t.id)} style={{fontFamily:M,fontSize: 13,letterSpacing:"0.04em",color:tab===t.id?"#F59E0B":"rgba(255,255,255,0.35)",background:"none",border:"none",cursor:"pointer",padding:"12px 16px",borderBottom:tab===t.id?"2px solid #F59E0B":"2px solid transparent"}}>{t.l}</button>)}
       {tab==="ranking"&&<div style={{marginLeft:"auto",display:"flex",gap:8,alignItems:"center"}}>
-        <button onClick={()=>setSort("adj")} style={{fontFamily:M,fontSize:10,color:sort==="adj"?"#F59E0B":"rgba(255,255,255,0.3)",background:"none",border:"none",cursor:"pointer"}}>by GDP</button>
-        <button onClick={()=>setSort("pct")} style={{fontFamily:M,fontSize:10,color:sort==="pct"?"#F59E0B":"rgba(255,255,255,0.3)",background:"none",border:"none",cursor:"pointer"}}>by HW%</button>
+        <button onClick={()=>setSort("adj")} style={{fontFamily:M,fontSize: 12,color:sort==="adj"?"#F59E0B":"rgba(255,255,255,0.3)",background:"none",border:"none",cursor:"pointer"}}>by GDP</button>
+        <button onClick={()=>setSort("pct")} style={{fontFamily:M,fontSize: 12,color:sort==="pct"?"#F59E0B":"rgba(255,255,255,0.3)",background:"none",border:"none",cursor:"pointer"}}>by HW%</button>
       </div>}
     </nav>
 
-    {tab==="ranking"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize:11}}>
+    {tab==="ranking"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
       <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-        {["#","Country","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Country"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize:10,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
+        {["#","Country","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Country"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
       </tr></thead>
       <tbody>{all.map((d,i)=><tr key={d.code} style={{borderBottom:"1px solid rgba(255,255,255,0.03)",background:d.code==="US"?"rgba(245,158,11,0.04)":"transparent"}}>
         <td style={{padding:"5px 10px",textAlign:"right",color:"rgba(255,255,255,0.3)"}}>{i+1}</td>
@@ -417,31 +417,31 @@ export default function App() {
 
     {tab==="chart"&&<div>
       <div style={{display:"flex",gap:0,marginBottom:16}}>
-        {["countries","blocs"].map(m=><button key={m} onClick={()=>setChartMode(m)} style={{fontFamily:M,fontSize:10,letterSpacing:"0.06em",color:chartMode===m?"#0D0D0D":"rgba(255,255,255,0.4)",background:chartMode===m?"#F59E0B":"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.1)",cursor:"pointer",padding:"6px 14px",borderRadius:m==="countries"?"4px 0 0 4px":"0 4px 4px 0",textTransform:"capitalize"}}>{m}</button>)}
+        {["countries","blocs"].map(m=><button key={m} onClick={()=>setChartMode(m)} style={{fontFamily:M,fontSize: 12,letterSpacing:"0.06em",color:chartMode===m?"#0D0D0D":"rgba(255,255,255,0.4)",background:chartMode===m?"#F59E0B":"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.1)",cursor:"pointer",padding:"6px 14px",borderRadius:m==="countries"?"4px 0 0 4px":"0 4px 4px 0",textTransform:"capitalize"}}>{m}</button>)}
       </div>
       {chartMode==="countries"?<ResponsiveContainer width="100%" height={Math.max(500,25*22)}>
         <BarChart data={all.slice(0,25)} layout="vertical" margin={{left:130,right:20,top:10,bottom:10}}>
-          <XAxis type="number" tickFormatter={fmt} tick={{fill:"rgba(255,255,255,0.3)",fontFamily:M,fontSize:10}} axisLine={{stroke:"rgba(255,255,255,0.06)"}}/>
-          <YAxis type="category" dataKey="name" tick={{fill:"#F5F0E8",fontFamily:M,fontSize:10}} axisLine={false} tickLine={false} width={125}/>
-          <Tooltip contentStyle={{background:"#1A1A1A",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,fontFamily:M,fontSize:11}} formatter={(v,n)=>[fmt(v),n==="adj"?"C-Adjusted":"Conventional"]}/>
+          <XAxis type="number" tickFormatter={fmt} tick={{fill:"rgba(255,255,255,0.3)",fontFamily:M,fontSize: 12}} axisLine={{stroke:"rgba(255,255,255,0.06)"}}/>
+          <YAxis type="category" dataKey="name" tick={{fill:"#F5F0E8",fontFamily:M,fontSize: 12}} axisLine={false} tickLine={false} width={125}/>
+          <Tooltip contentStyle={{background:"#1A1A1A",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,fontFamily:M,fontSize: 13}} formatter={(v,n)=>[fmt(v),n==="adj"?"C-Adjusted":"Conventional"]}/>
           <Bar dataKey="conv" fill="rgba(255,255,255,0.06)" radius={[0,2,2,0]} name="Conventional"/>
           <Bar dataKey="adj" radius={[0,2,2,0]} name="C-Adjusted">{all.slice(0,25).map((d,i)=><Cell key={i} fill={d.pct>25?"#EF4444":d.pct>15?"#F59E0B":"#22C55E"} fillOpacity={0.65}/>)}</Bar>
         </BarChart>
       </ResponsiveContainer>
       :<ResponsiveContainer width="100%" height={Math.max(400,blocData.length*36)}>
         <BarChart data={blocData} layout="vertical" margin={{left:170,right:20,top:10,bottom:10}}>
-          <XAxis type="number" tickFormatter={fmt} tick={{fill:"rgba(255,255,255,0.3)",fontFamily:M,fontSize:10}} axisLine={{stroke:"rgba(255,255,255,0.06)"}}/>
-          <YAxis type="category" dataKey="name" tick={{fill:"#F5F0E8",fontFamily:M,fontSize:10}} axisLine={false} tickLine={false} width={165}/>
-          <Tooltip contentStyle={{background:"#1A1A1A",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,fontFamily:M,fontSize:11}} formatter={(v,n)=>[fmt(v),n==="adj"?"C-Adjusted":"Conventional"]}/>
+          <XAxis type="number" tickFormatter={fmt} tick={{fill:"rgba(255,255,255,0.3)",fontFamily:M,fontSize: 12}} axisLine={{stroke:"rgba(255,255,255,0.06)"}}/>
+          <YAxis type="category" dataKey="name" tick={{fill:"#F5F0E8",fontFamily:M,fontSize: 12}} axisLine={false} tickLine={false} width={165}/>
+          <Tooltip contentStyle={{background:"#1A1A1A",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,fontFamily:M,fontSize: 13}} formatter={(v,n)=>[fmt(v),n==="adj"?"C-Adjusted":"Conventional"]}/>
           <Bar dataKey="conv" fill="rgba(255,255,255,0.06)" radius={[0,2,2,0]} name="Conventional"/>
           <Bar dataKey="adj" radius={[0,2,2,0]} name="C-Adjusted">{blocData.map((d,i)=><Cell key={i} fill={d.pct>25?"#EF4444":d.pct>15?"#F59E0B":"#22C55E"} fillOpacity={0.65}/>)}</Bar>
         </BarChart>
       </ResponsiveContainer>}
     </div>}
 
-    {tab==="blocs"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize:11}}>
+    {tab==="blocs"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
       <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-        {["#","Bloc","Members","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Bloc"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize:10,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
+        {["#","Bloc","Members","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Bloc"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
       </tr></thead>
       <tbody>{blocData.map((d,i)=><tr key={d.name} style={{borderBottom:"1px solid rgba(255,255,255,0.03)",background:d.name==="United States"?"rgba(245,158,11,0.04)":"transparent"}}>
         <td style={{padding:"5px 10px",textAlign:"right",color:"rgba(255,255,255,0.3)"}}>{i+1}</td>
@@ -455,7 +455,7 @@ export default function App() {
     </table></div>}
 
     {tab==="drill"&&selR&&<div>
-      <select value={sel} onChange={e=>setSel(e.target.value)} style={{fontFamily:M,fontSize:13,padding:"8px 12px",background:"#1A1A1A",color:"#F5F0E8",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,marginBottom:20,cursor:"pointer"}}>
+      <select value={sel} onChange={e=>setSel(e.target.value)} style={{fontFamily:M,fontSize: 15,padding:"8px 12px",background:"#1A1A1A",color:"#F5F0E8",border:"1px solid rgba(255,255,255,0.1)",borderRadius:4,marginBottom:20,cursor:"pointer"}}>
         {Object.entries(RAW).sort((a,b)=>b[1].g-a[1].g).map(([c,d])=><option key={c} value={c}>{d.n} ({fmt(d.g)})</option>)}
       </select>
       <div style={{display:"flex",gap:12,marginBottom:24,flexWrap:"wrap"}}>
@@ -463,9 +463,9 @@ export default function App() {
         <Stat l="C-Adjusted" v={fmt(selR.adj)}/>
         <Stat l="Hollow Win" v={fmt(selR.loss)} color="#EF4444" s={pc(selR.pct)+" of GDP"}/>
       </div>
-      <table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize:11}}>
+      <table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
         <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-          {["PST Channel","% GDP","Sector GDP","β_W","Loss"].map(h=><th key={h} style={{textAlign:h==="PST Channel"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize:10,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
+          {["PST Channel","% GDP","Sector GDP","β_W","Loss"].map(h=><th key={h} style={{textAlign:h==="PST Channel"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
         </tr></thead>
         <tbody>{selR.bd.map(ch=><tr key={ch.name} style={{borderBottom:"1px solid rgba(255,255,255,0.03)"}}>
           <td style={{padding:"5px 10px",color:"#F5F0E8"}}>{ch.name}</td>
@@ -477,21 +477,21 @@ export default function App() {
       </table>
     </div>}
 
-    {tab==="methods"&&<div style={{fontSize:15,lineHeight:1.8,color:"rgba(255,255,255,0.6)"}}>
-      <h2 style={{fontSize:20,fontWeight:400,color:"#F5F0E8",marginBottom:16}}>Methodology</h2>
+    {tab==="methods"&&<div style={{fontSize: 17,lineHeight:1.8,color:"rgba(255,255,255,0.6)"}}>
+      <h2 style={{fontSize: 20,fontWeight:400,color:"#F5F0E8",marginBottom:16}}>Methodology</h2>
       <p><strong style={{color:"#F5F0E8"}}>Data:</strong> World Bank WDI. GDP, sector value-added, resource rents, military and health expenditure as % of GDP. {Object.keys(RAW).length} countries.</p>
       <p><strong style={{color:"#F5F0E8"}}>PST mapping:</strong> World Bank sectors mapped to PST domains via resource rent indicators, military expenditure, and health expenditure. Decomposition ratios are preliminary — each SAPM paper refines the mapping.</p>
       <p><strong style={{color:"#F5F0E8"}}>β_W:</strong> Calibrated from SAPM papers where available. Placeholder estimates for domains in progress. Updates automatically as papers publish.</p>
       <p><strong style={{color:"#F5F0E8"}}>C-adjustment:</strong> loss = μ × β_W × sector_GDP × 0.01. Shadow price μ adjustable via slider.</p>
       <p><strong style={{color:"#F5F0E8"}}>Limitations:</strong> Sector decomposition ratios are estimated, not calibrated. β_W values for uncalibrated domains are placeholders. Fork the repo and contest any parameter.</p>
       <div style={{marginTop:32,padding:20,background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:4}}>
-        <div style={{fontFamily:M,fontSize:10,letterSpacing:"0.1em",color:"#F59E0B",textTransform:"uppercase",marginBottom:8}}>Citation</div>
-        <p style={{fontFamily:M,fontSize:12,color:"rgba(255,255,255,0.5)",margin:0}}>Postnieks, E. (2026). "What Is the World Actually Earning? C-Adjusted GDP Across 190 Countries." Working Paper. github.com/epostnieks/c-adjusted-gdp</p>
+        <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"#F59E0B",textTransform:"uppercase",marginBottom:8}}>Citation</div>
+        <p style={{fontFamily:M,fontSize: 14,color:"rgba(255,255,255,0.5)",margin:0}}>Postnieks, E. (2026). "What Is the World Actually Earning? C-Adjusted GDP Across 190 Countries." Working Paper. github.com/epostnieks/c-adjusted-gdp</p>
       </div>
     </div>}
 
     <footer style={{padding:"32px 0",marginTop:48,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
-      <div style={{fontFamily:M,fontSize:10,color:"rgba(255,255,255,0.15)",lineHeight:1.8}}>
+      <div style={{fontFamily:M,fontSize: 12,color:"rgba(255,255,255,0.15)",lineHeight:1.8}}>
         <div>C-Adjusted GDP Explorer · Erik Postnieks · github.com/epostnieks/c-adjusted-gdp</div>
         <div>Private Pareto Theorem (Postnieks, 2026a) · SAPM · World Bank WDI</div>
         <div>Every parameter contestable. Fork the repo. Change a β_W. The instrument is the argument.</div>
