@@ -174,41 +174,42 @@ const BLOCS = {
   "Middle East Petrostates": ["SA","AE","KW","QA","IQ","IR","OM","BH","LY","DZ","AZ"],
 };
 
-// SAPM-calibrated βW values — © 2026 Erik Postnieks (2025-2026)
-// Each beta sourced from the corresponding SAPM working paper
+// SAPM-calibrated β_W values — Postnieks (2026), System Asset Pricing Model
+// All values MC-verified or paper-verified as of Apr 2026. Source: Postnieks SAPM working papers.
+// β_W = −dW/dΠ where Π = annual REVENUE (not profit). Iron Law: revenue denominator only.
 const SAPM_BETAS = {
-  // Impossibility domains (physical floors)
-  pfas: 35.2,        // PFAS / Molecular Persistence
-  geneDrives: 12.4,  // Gene Drives (Impossibility)
-  opioid: 10.2,      // Opioid Ecosystem
-  monoculture: 8.6,  // Monoculture Agriculture (Impossibility)
-  cre: 8.4,          // CRE / Urban Hollowing
-  pops: 8.4,         // POPs Beyond PFAS
-  dsm: 4.7,          // Deep-Sea Mining (floor 2.0)
-  topsoil: 4.3,      // Topsoil Erosion (Impossibility)
-  wmd: 3.0,          // WMD Capability Diffusion (estimated)
-  cement: 1.35,      // Cement / Calcination Floor
-  nuclear: 0.53,     // Nuclear Fission
-  // Institutional PST domains
-  bigTech: 7.4,      // Big Tech / Platform Monopoly
-  frontierAI: 7.4,   // Frontier AI
-  tobacco: 6.5,      // Tobacco
-  studentLoans: 6.3, // Student Loans / For-Profit Education
-  gambling: 6.3,     // Commercial Gambling
-  pbm: 6.3,          // PBM Rebate System
-  oilGas: 6.2,       // Oil & Gas Extraction
-  palmOil: 6.2,      // Palm Oil
-  upf: 6.2,          // Ultra-Processed Food
-  coal: 6.1,         // Coal Combustion
-  bitcoin: 5.0,      // Bitcoin (PoW)
-  fisheries: 4.72,   // Global Fisheries
-  aviation: 4.6,     // Aviation Emissions
-  algoPricing: 4.2,  // Algorithmic Pricing
-  gigEconomy: 4.2,   // Gig Economy Platforms
-  water: 4.2,        // Water Privatization / Aquifer
-  arms: 2.4,         // Arms Exports
-  altcoins: 2.4,     // Altcoins / PoS
-  amr: 2.1,          // Antimicrobial Resistance
+  // Impossibility domains (physical constraints — no policy can eliminate)
+  pfas: 35.9,        // PFAS / Molecular Persistence — MC-verified Apr 2026 [paper=35.9]
+  wmd: 21.92,        // WMD Proliferation — MC [90% CI: 13.80–36.60]
+  geneDrives: 5.77,  // Gene Drives — DA7 [90% CI: 4.21–7.34]
+  opioid: 14.96,     // Opioid Ecosystem — MC [90% CI: 12.60–17.30]
+  monoculture: 7.36, // Monoculture Agriculture — MC✓ [Π=$340B revenue]
+  cre: 7.78,         // CRE / Urban Hollowing — MC [90% CI: 6.50–9.10]
+  pops: 6.23,        // POPs Beyond PFAS — MC [90% CI: 4.40–8.00]
+  dsm: 6.90,         // Deep-Sea Mining — MC [90% CI: 5.00–8.80]
+  topsoil: 4.41,     // Topsoil Erosion — MC [90% CI: 3.40–5.40]
+  cement: 6.74,      // Cement / Calcination — MC [90% CI: 4.80–8.70]
+  nuclear: 2.94,     // Nuclear Power — DA7 marginal beta [cover/MC=0.53 for full lifecycle]
+  // Intractability domains (institutional constraints — solvable with sufficient political will)
+  bigTech: 7.81,     // Big Tech / Platform Monopoly — MC [90% CI: 6.00–9.60]
+  frontierAI: 7.51,  // Frontier AI — MC [90% CI: 5.50–9.40]
+  tobacco: 6.50,     // Tobacco — MC [90% CI: 4.50–9.60]
+  studentLoans: 6.36,// Student Loans — MC [90% CI: 5.20–7.50]
+  gambling: 7.30,    // Commercial Gambling — MC [90% CI: 5.30–9.30]
+  pbm: 6.35,         // PBM Rebate System — MC [90% CI: 4.90–7.80]
+  oilGas: 1.63,      // Oil & Gas — MC [90% CI: 1.30–2.00; Π=$3,500B global revenue]
+  palmOil: 6.30,     // Palm Oil — MC [90% CI: 4.60–8.00]
+  upf: 4.06,         // Ultra-Processed Food — MC✓ [Π=$450B revenue]
+  coal: 6.95,        // Coal — MC [90% CI: 5.70–8.20]
+  bitcoin: 5.00,     // Bitcoin (PoW) — MC [90% CI: 3.20–7.80]
+  fisheries: 4.70,   // Global Fisheries — MC [90% CI: 3.80–5.60]
+  aviation: 4.97,    // Aviation Emissions — MC [90% CI: 3.60–6.40]
+  algoPricing: 5.38, // Algorithmic Pricing — MC [90% CI: 3.90–6.90]
+  gigEconomy: 0.76,  // Gig Economy Platforms — MC [90% CI: 0.60–0.90]
+  water: 5.61,       // Water Privatization — MC [90% CI: 3.70–7.50]
+  arms: 2.54,        // Arms Exports — MC [90% CI: 1.90–3.20]
+  altcoins: 3.14,    // Altcoins / PoS — DA7 [90% CI: 2.31–3.98]
+  amr: 1.60,         // AMR — paper-verified [strategic wedge excluded; betaW×Π basis]
 };
 
 // Country-level exposure for domains not in World Bank data (% of GDP)
@@ -348,7 +349,7 @@ export default function App() {
     <style>{`@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap');`}</style>
 
     <header style={{padding:"40px 0 24px",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-      <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.12em",color:"#F59E0B",marginBottom:12,textTransform:"uppercase"}}>C-Adjusted GDP Explorer · {Object.keys(RAW).length} Countries · World Bank Data</div>
+      <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.12em",color:"#F59E0B",marginBottom:12,textTransform:"uppercase"}}>C-Adjusted GDP Explorer · {Object.keys(RAW).length} Countries · World Bank WDI · SAPM (2026)</div>
       <h1 style={{fontSize: 28,fontWeight:400,margin:0,lineHeight:1.25,letterSpacing:"-0.02em"}}>What Is the World Actually Earning?</h1>
       <p style={{fontSize: 17,color:"rgba(255,255,255,0.4)",margin:"8px 0 0",fontStyle:"italic"}}>C-Adjusted GDP Using the System Asset Pricing Model</p>
       <div style={{fontFamily:M,fontSize: 13,color:"rgba(255,255,255,0.25)",marginTop:12}}>Erik Postnieks · Postnieks (2026a) · github.com/epostnieks/c-adjusted-gdp</div>
@@ -403,7 +404,7 @@ export default function App() {
 
     {tab==="ranking"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
       <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-        {["#","Country","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Country"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h === "βW" ? <span>β<sub>W</sub></span> : h}</th>)}
+        {["#","Country","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Country"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
       </tr></thead>
       <tbody>{all.map((d,i)=><tr key={d.code} style={{borderBottom:"1px solid rgba(255,255,255,0.03)",background:d.code==="US"?"rgba(245,158,11,0.04)":"transparent"}}>
         <td style={{padding:"5px 10px",textAlign:"right",color:"rgba(255,255,255,0.3)"}}>{i+1}</td>
@@ -441,7 +442,7 @@ export default function App() {
 
     {tab==="blocs"&&<div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
       <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-        {["#","Bloc","Members","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Bloc"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h === "βW" ? <span>β<sub>W</sub></span> : h}</th>)}
+        {["#","Bloc","Members","Conv. GDP","C-Adj GDP","Hollow Win","HW %"].map(h=><th key={h} style={{textAlign:h==="Bloc"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
       </tr></thead>
       <tbody>{blocData.map((d,i)=><tr key={d.name} style={{borderBottom:"1px solid rgba(255,255,255,0.03)",background:d.name==="United States"?"rgba(245,158,11,0.04)":"transparent"}}>
         <td style={{padding:"5px 10px",textAlign:"right",color:"rgba(255,255,255,0.3)"}}>{i+1}</td>
@@ -465,7 +466,7 @@ export default function App() {
       </div>
       <table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize: 13}}>
         <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
-          {["PST Channel","% GDP","Sector GDP","βW","Loss"].map(h=><th key={h} style={{textAlign:h==="PST Channel"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h === "βW" ? <span>β<sub>W</sub></span> : h}</th>)}
+          {["PST Channel","% GDP","Sector GDP","β_W","Loss"].map(h=><th key={h} style={{textAlign:h==="PST Channel"?"left":"right",padding:"8px 10px",color:"rgba(255,255,255,0.4)",fontWeight:400,fontSize: 12,letterSpacing:"0.06em",textTransform:"uppercase"}}>{h}</th>)}
         </tr></thead>
         <tbody>{selR.bd.map(ch=><tr key={ch.name} style={{borderBottom:"1px solid rgba(255,255,255,0.03)"}}>
           <td style={{padding:"5px 10px",color:"#F5F0E8"}}>{ch.name}</td>
@@ -477,16 +478,86 @@ export default function App() {
       </table>
     </div>}
 
-    {tab==="methods"&&<div style={{fontSize: 17,lineHeight:1.8,color:"rgba(255,255,255,0.6)"}}>
-      <h2 style={{fontSize: 20,fontWeight:400,color:"#F5F0E8",marginBottom:16}}>Methodology</h2>
-      <p><strong style={{color:"#F5F0E8"}}>Data:</strong> World Bank WDI. GDP, sector value-added, resource rents, military and health expenditure as % of GDP. {Object.keys(RAW).length} countries.</p>
-      <p><strong style={{color:"#F5F0E8"}}>PST mapping:</strong> World Bank sectors mapped to PST domains via resource rent indicators, military expenditure, and health expenditure. Decomposition ratios are preliminary — each SAPM paper refines the mapping.</p>
-      <p><strong style={{color:"#F5F0E8"}}>β<sub>W</sub>:</strong> Calibrated from SAPM papers where available. Placeholder estimates for domains in progress. Updates automatically as papers publish.</p>
-      <p><strong style={{color:"#F5F0E8"}}>C-adjustment:</strong> loss = μ × βW × sector_GDP × 0.01. Shadow price μ adjustable via slider.</p>
-      <p><strong style={{color:"#F5F0E8"}}>Limitations:</strong> Sector decomposition ratios are estimated, not calibrated. βW values for uncalibrated domains are placeholders. Fork the repo and contest any parameter.</p>
-      <div style={{marginTop:32,padding:20,background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:4}}>
+    {tab==="methods"&&<div style={{fontSize: 16,lineHeight:1.85,color:"rgba(255,255,255,0.65)"}}>
+      <h2 style={{fontSize: 22,fontWeight:400,color:"#F5F0E8",marginBottom:20,letterSpacing:"-0.02em"}}>Methodology</h2>
+
+      <h3 style={{fontSize:15,fontWeight:600,color:"#F59E0B",letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:8,marginTop:24}}>Theoretical Foundation</h3>
+      <p>The <strong style={{color:"#F5F0E8"}}>Private Pareto Theorem</strong> (Postnieks, 2026a) establishes that the bilateral payoff space — the set of outcomes Pareto-optimal for transacting parties A and B — structurally excludes system welfare C by construction. A transaction can simultaneously be Pareto-optimal for A and B while destroying the system C depends on. This is not a market failure amenable to Pigouvian correction; it is a structural property of bilateral optimization.</p>
+      <p>C-Adjusted GDP measures what remains of conventional GDP after subtracting these structural welfare losses — the system cost that markets cannot internalize because the bilateral Pareto frontier lies, by construction, outside the full welfare space.</p>
+
+      <h3 style={{fontSize:15,fontWeight:600,color:"#F59E0B",letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:8,marginTop:28}}>The Formula</h3>
+      <div style={{fontFamily:M,fontSize:14,padding:"14px 18px",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:4,marginBottom:12,lineHeight:2.2}}>
+        <div style={{color:"#F5F0E8"}}>C-Adj GDP = Conventional GDP − Σ(domain losses)</div>
+        <div style={{color:"rgba(255,255,255,0.5)",marginTop:4}}>domain loss(i) = μ × β_W(i) × sector_GDP(i) × 0.15</div>
+      </div>
+      <p><strong style={{color:"#F5F0E8"}}>μ (shadow price):</strong> Adjustable via slider. μ=1.0 applies the full social cost. μ=0.5 reflects partial internalization (e.g., existing carbon pricing). μ=2.0 stress-tests the upper bound.</p>
+      <p><strong style={{color:"#F5F0E8"}}>β_W:</strong> Welfare cost coefficient calibrated via Monte Carlo simulation (10,000 iterations) against peer-reviewed externality estimates. Defined as −dW/dΠ where Π = annual revenue (never profit). Iron Law: using profit instead of revenue inflates β_W by 5–20× for low-margin sectors.</p>
+      <p><strong style={{color:"#F5F0E8"}}>0.15 (net appropriation fraction):</strong> The share of sector revenue constituting net private capture of system welfare — calibrated to the SAPM median across 61 domains. The most contestable assumption in the model. Use the μ slider for sensitivity analysis, or fork the repo and change it directly.</p>
+
+      <h3 style={{fontSize:15,fontWeight:600,color:"#F59E0B",letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:8,marginTop:28}}>Data Sources</h3>
+      <p><strong style={{color:"#F5F0E8"}}>Primary — World Bank WDI ({Object.keys(RAW).length} countries):</strong> GDP and sector value-added (<code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NV.AGR.TOTL.CD</code>, <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NV.IND.MANF.CD</code>, <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NV.SRV.TOTL.CD</code>), resource rents (<code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NY.GDP.PETR.RT.ZS</code>, <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NY.GDP.COAL.RT.ZS</code>, <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NY.GDP.MINR.RT.ZS</code>, <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>NY.GDP.FRST.RT.ZS</code>), military expenditure (<code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>MS.MIL.XPND.GD.ZS</code>), health expenditure (<code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>SH.XPD.CHEX.GD.ZS</code>). Data vintage: most recent observation 2020–2024.</p>
+      <p><strong style={{color:"#F5F0E8"}}>Secondary — domain exposure data:</strong> WHO Global Tobacco Control Report 2023; H2 Gambling Capital 2023; ICAO/IATA Industry Statistics 2023; World Bank/FAO Fisheries Statistics 2023; OECD Digital Economy Outlook 2023; Euromonitor International 2023. Full citations in <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>METHODOLOGY.md</code>.</p>
+
+      <h3 style={{fontSize:15,fontWeight:600,color:"#F59E0B",letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:8,marginTop:28}}>β_W Values (Apr 2026)</h3>
+      <p>All values MC-verified or paper-verified. Source: Postnieks SAPM working papers (2026). Values represent the median of 10,000 Monte Carlo iterations; 90% CIs in parentheses.</p>
+      <div style={{overflowX:"auto",marginBottom:12}}>
+        <table style={{width:"100%",borderCollapse:"collapse",fontFamily:M,fontSize:12}}>
+          <thead><tr style={{borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
+            {["Domain","β_W","90% CI","Source","Type"].map(h=><th key={h} style={{textAlign:h==="Domain"?"left":"right",padding:"6px 8px",color:"rgba(255,255,255,0.4)",fontWeight:400,letterSpacing:"0.05em"}}>{h}</th>)}
+          </tr></thead>
+          <tbody>{[
+            ["PFAS / Forever Chemicals",35.9,"[27.8, 44.1]","MC","Impossibility"],
+            ["WMD Proliferation",21.92,"[13.80, 36.60]","MC","Impossibility"],
+            ["Opioid Ecosystem",14.96,"[12.60, 17.30]","MC","Intractability"],
+            ["CRE / Urban Hollowing",7.78,"[6.50, 9.10]","MC","Intractability"],
+            ["Frontier AI",7.51,"[5.50, 9.40]","MC","Intractability"],
+            ["Monoculture Agriculture",7.36,"[5.43, 10.09]","MC✓","Impossibility"],
+            ["Commercial Gambling",7.30,"[5.30, 9.30]","MC","Intractability"],
+            ["Big Tech / Platform",7.81,"[6.00, 9.60]","MC","Intractability"],
+            ["Deep-Sea Mining",6.90,"[5.00, 8.80]","MC","Impossibility"],
+            ["Cement & Concrete",6.74,"[4.80, 8.70]","MC","Impossibility"],
+            ["Tobacco",6.50,"[4.50, 9.60]","MC","Intractability"],
+            ["Student Loans",6.36,"[5.20, 7.50]","MC","Intractability"],
+            ["PBM Rebate System",6.35,"[4.90, 7.80]","MC","Intractability"],
+            ["Palm Oil",6.30,"[4.60, 8.00]","MC","Impossibility"],
+            ["POPs Beyond PFAS",6.23,"[4.40, 8.00]","MC","Impossibility"],
+            ["Water Privatization",5.61,"[3.70, 7.50]","MC","Intractability"],
+            ["Algorithmic Pricing",5.38,"[3.90, 6.90]","MC","Intractability"],
+            ["Bitcoin (PoW)",5.00,"[3.20, 7.80]","MC","Impossibility"],
+            ["Aviation Emissions",4.97,"[3.60, 6.40]","MC","Impossibility"],
+            ["Fisheries",4.70,"[3.80, 5.60]","MC","Intractability"],
+            ["Topsoil Erosion",4.41,"[3.40, 5.40]","MC","Impossibility"],
+            ["Ultra-Processed Food",4.06,"[3.39, 4.95]","MC✓","Intractability"],
+            ["Altcoins / PoS",3.14,"[2.31, 3.98]","DA7","Intractability"],
+            ["Nuclear Power",2.94,"[1.87, 4.01]","DA7","Impossibility"],
+            ["Arms Exports",2.54,"[1.90, 3.20]","MC","Intractability"],
+            ["AMR",1.60,"—","Paper","Impossibility"],
+            ["Oil & Gas",1.63,"[1.30, 2.00]","MC","Impossibility"],
+            ["Gene Drives",5.77,"[4.21, 7.34]","DA7","Impossibility"],
+            ["Gig Economy",0.76,"[0.60, 0.90]","MC","Intractability"],
+          ].map(([d,b,ci,src,t])=><tr key={d} style={{borderBottom:"1px solid rgba(255,255,255,0.03)"}}>
+            <td style={{padding:"4px 8px",color:"#F5F0E8"}}>{d}</td>
+            <td style={{padding:"4px 8px",textAlign:"right",color:"#F59E0B",fontWeight:600}}>{b}</td>
+            <td style={{padding:"4px 8px",textAlign:"right",color:"rgba(255,255,255,0.35)",fontSize:11}}>{ci}</td>
+            <td style={{padding:"4px 8px",textAlign:"right",color:"rgba(255,255,255,0.5)"}}>{src}</td>
+            <td style={{padding:"4px 8px",textAlign:"right",color:t==="Impossibility"?"#EF4444":"#F59E0B",fontSize:11}}>{t}</td>
+          </tr>)}
+          </tbody>
+        </table>
+      </div>
+      <p style={{fontSize:13,color:"rgba(255,255,255,0.35)"}}>MC = Monte Carlo simulation · MC✓ = Iron Law corrected (profit→revenue denominator) · DA7 = extracted from DA Field 7 · Paper = verified in working paper body</p>
+
+      <h3 style={{fontSize:15,fontWeight:600,color:"#F59E0B",letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:8,marginTop:28}}>Limitations</h3>
+      <p>Sector decomposition ratios are global averages, not country-calibrated. β_W values are calibrated to global industry Π; applying them to national sectors assumes geographic β_W homogeneity. The 0.15 coefficient is the single most contestable assumption. Countries with large informal economies have systematically understated sector GDP and correspondingly understated welfare losses. Full technical treatment in <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>METHODOLOGY.md</code>.</p>
+
+      <div style={{marginTop:32,padding:20,background:"rgba(245,158,11,0.04)",border:"1px solid rgba(245,158,11,0.15)",borderRadius:4}}>
+        <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"#F59E0B",textTransform:"uppercase",marginBottom:10}}>Replication</div>
+        <p style={{margin:"0 0 8px",fontSize:15}}>Clone <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>github.com/epostnieks/c-adjusted-gdp</code>. Run <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>npm install && npm run dev</code>. To refresh World Bank data: <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>python fetch_gdp_data.py &gt; gdp_data.json</code>. Change any β_W in <code style={{fontFamily:M,fontSize:13,color:"#F59E0B"}}>SAPM_BETAS</code>. The entire ranking updates instantly.</p>
+      </div>
+
+      <div style={{marginTop:20,padding:20,background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:4}}>
         <div style={{fontFamily:M,fontSize: 12,letterSpacing:"0.1em",color:"#F59E0B",textTransform:"uppercase",marginBottom:8}}>Citation</div>
-        <p style={{fontFamily:M,fontSize: 14,color:"rgba(255,255,255,0.5)",margin:0}}>Postnieks, E. (2026). "What Is the World Actually Earning? C-Adjusted GDP Across 190 Countries." Working Paper. github.com/epostnieks/c-adjusted-gdp</p>
+        <p style={{fontFamily:M,fontSize: 13,color:"rgba(255,255,255,0.45)",margin:0,lineHeight:1.8}}>Postnieks, E. (2026). "What Is the World Actually Earning? C-Adjusted GDP Across {Object.keys(RAW).length} Countries Using the System Asset Pricing Model." Working Paper. github.com/epostnieks/c-adjusted-gdp</p>
       </div>
     </div>}
 
@@ -494,7 +565,7 @@ export default function App() {
       <div style={{fontFamily:M,fontSize: 12,color:"rgba(255,255,255,0.15)",lineHeight:1.8}}>
         <div>C-Adjusted GDP Explorer · Erik Postnieks · github.com/epostnieks/c-adjusted-gdp</div>
         <div>Private Pareto Theorem (Postnieks, 2026a) · SAPM · World Bank WDI</div>
-        <div>Every parameter contestable. Fork the repo. Change a βW. The instrument is the argument.</div>
+        <div>Every parameter contestable. Fork the repo. Change a β_W. The instrument is the argument.</div>
       </div>
     </footer>
   <SAPMNav />
